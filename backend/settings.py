@@ -111,25 +111,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# ==================== STATIC FILES ====================
 STATIC_URL = 'static/'
-
-# The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Optional: Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
-# For production, make sure WhiteNoise is configured
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# CRITICAL FIX: Use Django's default storage temporarily
-# Comment out WhiteNoise storage for now - re-enable after successful deployment
+# Use Django's default storage for now to avoid WhiteNoise issues
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Enable this later
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -253,13 +242,3 @@ LOGGING = {
         },
     },
 }
-
-# ==================== RENDER-SPECIFIC FIX ====================
-# This ensures STATIC_ROOT always works on Render
-import os
-if os.environ.get('RENDER'):
-    # Render environment - use absolute path
-    STATIC_ROOT = '/opt/render/project/staticfiles'
-else:
-    # Local development - use relative path
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')[PASTE THE ENTIRE SETTINGS.PY CONTENT ABOVE HERE]
