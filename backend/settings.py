@@ -239,3 +239,8 @@ LOGGING = {
     },
 }
 
+
+# Render-specific static files fix
+import os
+if os.environ.get('RENDER'):
+    STATIC_ROOT = os.environ.get('DJANGO_STATIC_ROOT', '/opt/render/project/staticfiles')
