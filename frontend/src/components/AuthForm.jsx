@@ -120,9 +120,9 @@ function AuthForm() {
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: '15px' }}>
           <input
-            type="text"
+            type="email"
             name="username"
-            placeholder="Username"
+            placeholder="Email"
             value={formData.username}
             onChange={handleChange}
             required
